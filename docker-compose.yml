@@ -1,0 +1,49 @@
+# ==============================================================================
+# Hytale Server - Local Development
+# ==============================================================================
+# For testing the Docker image locally before deploying to Fly.io
+# ==============================================================================
+
+version: '3.8'
+
+services:
+  hytale-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    container_name: hytale-server
+    
+    ports:
+      - "5520:5520/udp"
+    
+    environment:
+      # REQUIRED: Set this to your OAuth2 refresh token
+      - HYTALE_REFRESH_TOKEN=${HYTALE_REFRESH_TOKEN:-}
+      
+      # Server configuration
+      - SERVER_NAME=Local Test Server
+      - MAX_PLAYERS=10
+      - MEMORY_MB=4096
+      - AUTH_MODE=authenticated
+      
+    volumes:
+      # Persist world data between restarts
+      - hytale-universe:/server/universe
+      # Persist mods
+      - hytale-mods:/server/mods
+    
+    # Restart policy for development
+    restart: unless-stopped
+    
+    # Resource limits (optional, for local testing)
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+        reservations:
+          memory: 4G
+
+volumes:
+  hytale-universe:
+  hytale-mods:

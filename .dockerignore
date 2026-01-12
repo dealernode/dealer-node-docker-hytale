@@ -1,0 +1,72 @@
+# ==============================================================================
+# Hytale Server Docker - Ignore files for Docker build
+# ==============================================================================
+# These files are excluded from the Docker build context for faster builds
+# and to prevent sensitive data from being included in the image.
+# ==============================================================================
+
+# Git
+.git
+.gitignore
+
+# Environment files with secrets
+.env
+.env.local
+.env.*.local
+
+# Documentation (not needed in image)
+README.md
+LICENSE
+*.md
+DEALER_NODE_GUIDE.md
+
+# Docker files (prevent recursive builds)
+docker-compose*.yml
+Dockerfile*
+.dockerignore
+
+# Authentication credentials (CRITICAL - never include in image!)
+auth/
+.hytale-server/
+.hytale-downloader/
+*.token
+*.secret
+*.key
+*.pem
+
+# Build artifacts and downloads
+*.zip
+*.jar
+*.tar
+*.tar.gz
+
+# Server data (mounted as volumes, not baked in)
+universe/
+mods/
+config.json
+.cache/
+data/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# GitHub Actions
+.github/
+
+# Test files
+test/
+tests/
+*.test.*

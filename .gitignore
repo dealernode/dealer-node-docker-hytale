@@ -1,0 +1,48 @@
+# ==============================================================================
+# Hytale Server Docker - Ignore files for Git
+# ==============================================================================
+
+# Environment files with secrets
+.env
+.env.local
+.env.*.local
+
+# Authentication credentials (NEVER commit these!)
+auth/
+.hytale-server/
+.hytale-downloader/
+*.token
+*.secret
+
+# Internal Dealer Node guide (confidential)
+DEALER_NODE_GUIDE.md
+
+# Build artifacts
+*.zip
+*.jar
+*.tar
+*.tar.gz
+
+# Server data (should be in volumes, not repo)
+universe/
+mods/
+config.json
+.cache/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker local data
+data/

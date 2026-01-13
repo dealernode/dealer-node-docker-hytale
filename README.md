@@ -6,9 +6,10 @@ Unofficial Docker image for running Hytale game servers.
 
 ## Features
 
-- ✅ Java 25 (Adoptium Temurin)
+- ✅ Java 25 (Adoptium Temurin) on Debian (glibc for QUIC support)
 - ✅ Automatic server file download via `hytale-downloader`
-- ✅ Multi-architecture: `amd64` and `arm64`
+- ✅ **Automatic OAuth2 token refresh** - no manual token regeneration needed
+- ✅ Multi-architecture support
 - ✅ Non-root user for security
 - ✅ Health checks included
 - ✅ Persistent world data support
@@ -193,7 +194,7 @@ docker run -d -p 5520:5520/udp -e HYTALE_CREDENTIALS_JSON='{...}' hytale-server
 - Verify your IP address is correct
 
 ### Token expired
-Re-run `hytale-downloader` to get a new token and update your environment variable.
+The server **automatically refreshes tokens** using the OAuth2 endpoint. If you still get token errors, the refresh token itself may have expired (after ~30 days of inactivity). In this case, re-run `hytale-downloader` to get new credentials.
 
 ---
 

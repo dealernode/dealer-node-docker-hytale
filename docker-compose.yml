@@ -18,8 +18,8 @@ services:
       - "5520:5520/udp"
     
     environment:
-      # REQUIRED: Set this to your OAuth2 refresh token
-      - HYTALE_REFRESH_TOKEN=${HYTALE_REFRESH_TOKEN:-}
+      # REQUIRED: Set this to your full credentials JSON from .hytale-downloader-credentials.json
+      - HYTALE_CREDENTIALS_JSON=${HYTALE_CREDENTIALS_JSON:-}
       
       # Server configuration
       - SERVER_NAME=Local Test Server

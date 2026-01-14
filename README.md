@@ -71,7 +71,6 @@ services:
       - HYTALE_CREDENTIALS_JSON={"access_token":"...","refresh_token":"...","expires_at":...,"branch":"release"}
       - SERVER_NAME=My Hytale Server
       - MAX_PLAYERS=20
-      - MEMORY_MB=4096
     volumes:
       - hytale-universe:/server/universe
       - hytale-mods:/server/mods
@@ -91,9 +90,10 @@ volumes:
 | `HYTALE_CREDENTIALS_JSON` | ✅ **Yes** | - | Full JSON from `.hytale-downloader-credentials.json` |
 | `SERVER_NAME` | No | `Hytale Server - (Dealer Node)` | Server display name |
 | `MAX_PLAYERS` | No | `10` | Maximum concurrent players |
-| `MEMORY_MB` | No | `4096` | JVM heap size in MB |
 | `AUTH_MODE` | No | `authenticated` | `authenticated` or `offline` |
 | `SKIP_UPDATE_CHECK` | No | `false` | Skip server file update check |
+
+> 💡 **Memory:** The JVM automatically uses up to 90% of available container memory via `-XX:MaxRAMPercentage`.
 
 ---
 

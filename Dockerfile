@@ -57,7 +57,6 @@ EXPOSE 5520/udp
 # Default environment variables (no secrets here!)
 ENV SERVER_NAME="Hytale Server - (Dealer Node)"
 ENV MAX_PLAYERS=10
-ENV MEMORY_MB=4096
 ENV AUTH_MODE=authenticated
 ENV VIEW_DISTANCE=10
 

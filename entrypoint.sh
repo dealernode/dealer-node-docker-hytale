@@ -164,21 +164,21 @@ fi
 echo "[Dealer Node] Starting Hytale Server..."
 echo "[Dealer Node] Server Name: ${SERVER_NAME}"
 echo "[Dealer Node] Max Players: ${MAX_PLAYERS}"
-echo "[Dealer Node] Memory: ${MEMORY_MB}MB"
 echo "[Dealer Node] Auth Mode: ${AUTH_MODE}"
 echo "[Dealer Node] Bind: 0.0.0.0:5520"
 echo ""
 
-# Build JVM arguments
-JVM_ARGS="-Xms${MEMORY_MB}M -Xmx${MEMORY_MB}M"
+# Build JVM arguments - let JVM use maximum available memory
+# UseContainerSupport makes JVM aware of container memory limits
+# MaxRAMPercentage sets how much of available memory to use (90%)
+JVM_ARGS="-XX:+UseContainerSupport"
+JVM_ARGS="$JVM_ARGS -XX:MaxRAMPercentage=90.0"
+JVM_ARGS="$JVM_ARGS -XX:InitialRAMPercentage=50.0"
 
 # Performance tuning for containers
 JVM_ARGS="$JVM_ARGS -XX:+UseG1GC"
 JVM_ARGS="$JVM_ARGS -XX:MaxGCPauseMillis=50"
 JVM_ARGS="$JVM_ARGS -XX:+UseStringDeduplication"
-
-# Container awareness
-JVM_ARGS="$JVM_ARGS -XX:+UseContainerSupport"
 
 # Build server arguments
 SERVER_ARGS="--bind 0.0.0.0:5520"

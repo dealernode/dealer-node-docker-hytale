@@ -24,7 +24,6 @@ services:
       # Server configuration
       - SERVER_NAME=Local Test Server
       - MAX_PLAYERS=10
-      - MEMORY_MB=4096
       - AUTH_MODE=authenticated
       
     volumes:
